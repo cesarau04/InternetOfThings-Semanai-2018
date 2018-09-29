@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+  <title>IoT - Lectura de Sensores</title>
+
+  <!-- Configuración responsive -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <!-- CSS slider bar-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.2.0/css/bootstrap-slider.min.css" integrity="sha256-NGswHEy6gjXxyLL+vBBHigA1kGliPHt+7BBPBzntzAw=" crossorigin="anonymous" />
+  <!-- Nuestro CSS-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+  <div class="container">
+    <hr>
+    <div class="row">
+      <div class="text-center col-12">
+        <h4 id="title">IoT 2018</h4>
+      </div>
+    </div>
+    <hr>
+
+    <!--<div class="row">
+      <p id="LED" class="col">
+
+      </p>
+    </div>-->
+
+    <div class="container collapse" id="loginPanel">
+
+<!--LOGIN CONTAINER-->
+      <div class="row">
+        <div class="text-center col-12">
+          <p id="loginText">INICIO DE SESIÓN</p>
+        </div>
+      </div>
+      <div class="row"></div>
+
+      <form>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Correo electronico</label>
+          <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Contraseña</label>
+          <input type="password" class="form-control" id="inputPassword" placeholder="">
+        </div>
+        <input type="button" class="btn btn-primary btnSeccion" id="logIn" value="Continuar"/>
+      </form>
+      <br>
+      <div class="alert alert-danger collapse" id="errorLogin" role="alert">
+        Email o contraseña inválida.
+      </div>
+      <div class="alert alert-success collapse" id="okayLogin" role="alert">
+        ¡Sesión cerrada!
+      </div>
+      <hr>
+    </div>
+<!--LOGIN CONTAINER-->
+
+<!--PANEL CONTAINER-->
+    <div class="container-fluid collapse" id="controlPanel">
+      <div class="row">
+        <div id="welcomeText" class="col-12 ">
+        </div>
+      </div>
+      <div class="row"></div>
+
+      <div class="container-fluid">
+        <div class="alert alert-danger collapse" role="alert" id="cuidado">
+        </div>
+      </div>
+
+      <div class="container-fluid">
+        <div class="alert alert-warning collapse" role="alert" id="cuidado2">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm col-md col-lg">
+          <div id="albercaCard" class="card mt-3">
+            <div id="albercaCard2" class="card-body">
+              <p class="card-text text-center">ALBERCA</p>
+            </div>
+            <p></p>
+            <img class="card-img-top" src="alberca2.png" alt="Card image cap">
+            <p></p>
+          </div>
+        </div>
+
+        <div class="col-sm col-md col-lg">
+          <div id="puertaCard" class="card mt-3">
+            <div id="puertaCard2" class="card-body">
+              <p class="card-text text-center">MONITOR PUERTA</p>
+            </div>
+            <p></p>
+            <img class="card-img-top" src="seguridad.png" alt="Card image cap">
+            <p></p>
+          </div>
+        </div>
+
+        <div class="col-sm col-md col-lg">
+          <div id="ilumCard" class="card mt-3">
+            <div id="ilumCard2" class="card-body">
+              <p class="card-text text-center">ILUMINACIÓN</p>
+            </div>
+            <p></p>
+            <img class="card-img-top" src="illuminacion.png" alt="Card image cap">
+            <p></p>
+          </div>
+        </div>
+
+        <div id="protSHOW" class="col-sm col-md col-lg">
+          <div id="protCard" class="card mt-3">
+            <div id="protCard2" class="card-body">
+              <p id="textProt" class="card-text text-center">¡SIN PROTECCIÓN!</p>
+            </div>
+            <p></p>
+            <img id="lockON" class="card-img-top" src="lockdownOFF.png" alt="Card image cap">
+            <p></p>
+          </div>
+        </div>
+
+        <div id="protSHOW2" class="col-sm col-md col-lg collapse">
+          <div id="protCardON" class="card mt-3">
+            <div id="protCard2ON" class="card-body">
+              <p id="textProt2" class="card-text text-center">PROTEGIDO</p>
+            </div>
+            <p></p>
+            <img id="lockOFF" class="card-img-top" src="lockdown.png" alt="Card image cap">
+            <p></p>
+          </div>
+        </div>
+
+      </div>
+<!--PANEL CONTAINER-->
+
+<!--ALBERCA CONTAINER-->
+      <div id="albercaJB" class="container-fluid collapse">
+        <div id="albercaJBimg" class="jumbotron jumbotron-fluid">
+          <div class="container">
+            <h1 class="display-4">Control alberca</h1>
+            <p class="lead">Monitoreo de temperatura del agua. En caso de alcanzar cierta temperatura, se enciende un calentador para mantener el rango deseado.</p>
+            <p id="alberca"></p>
+            <p id="calentador"></p>
+            <div class="form-inline">
+              <label for="thresholdVal">Temperatura deseada &nbsp;</label>
+              <select onchange="updateThreshold()" class="form-control" id="thresholdVal">
+              <option>20</option>
+              <option>21</option>
+              <option>22</option>
+              <option>23</option>
+              <option>24</option>
+              <option>25</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+<!--ALBERCA CONTAINER-->
+
+<!--DOOR CONTAINER-->
+      <div id="doorJB" class="container-fluid collapse">
+        <div id="doorJBimg" class="jumbotron jumbotron-fluid">
+          <div class="container">
+            <h1 class="display-4">Control de puerta principal</h1>
+            <p class="lead">Notifica por la app cuando alguien toca la puerta (sensor de vibración por al menos 2 segundos), y el usuario es capaz de accionar la cerradura gracias al sensor de cerradura (si lo mantiene activo durante cierto tiempo).</p>
+            <p id="puertaprincipal"></p>
+            <button id="abrirPuerta" type="button" class="btn btn-success">Abrir Puerta</button>
+          </div>
+        </div>
+      </div>
+<!--DOOR CONTAINER-->
+
+<!--ILUMINACIÓN CONTAINER-->
+      <div id="ilumJB" class="container-fluid collapse">
+        <div id="ilumJBimg" class="jumbotron jumbotron-fluid">
+          <div class="container">
+            <h1 class="display-4">Control de iluminación</h1>
+            <p class="lead">Las lámparas externas se encienden y apagan dependiendo del nivel de iluminación (usando fotorresistencia) ya sea porque anochece/amanece o porque este nublado.</p>
+            <p id="luces"></p>
+          </div>
+        </div>
+      </div>
+<!--ILUMINACIÓN CONTAINER-->
+
+<!--WEATHER CONTAINER-->
+      <div id="weatherPanel" class="container-fluid">
+        <div id="weatherJBimg"class="jumbotron jumbotron-fluid">
+          <div class="container">
+            <h1 class="display-4">El clima</h1>
+            <p id="clima" class="lead"></p>
+          </div>
+        </div>
+      </div>
+<!--WEATHER CONTAINER-->
+
+
+<!--CERRAR SESION CONTAINER-->
+      <div class="row">
+        <div class="text-center col-12">
+          <input type="button" class="btn btn-danger btnSeccion" id="logOut" value="Cerrar sesión"/>
+        </div>
+      </div>
+<!--CERRAR SESION CONTAINER-->
+    </div>
+  </div>
+
+
+
+<!--OLD PANEL CONTAINER-->
+          <!--
+          <div class="container collapse" id="controlPanel">
+            CONTROL PANEL CONTAINER
+            <div class="row">
+              <div id="welcomeText" class="col-12 ">
+              </div>
+            </div>
+            <div class="row"></div>
+
+            <div class="row">
+              <div class="col-12 ">
+                <h5>Clima</h5>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm col-md col-lg">
+                <div class="card mt-3">
+                  <img class="card-img-top" src="humedad.jpeg" alt="Humedad">
+                  <div class="card-body">
+                    <h5 class="card-title">Humedad</h5>
+                    <p id="humedadValue" class="card-text"></p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm col-md col-lg">
+                <div class="card mt-3">
+                  <img class="card-img-top" src="clima.jpeg" alt="Clima">
+                  <div class="card-body">
+                    <h5 class="card-title">Temperatura</h5>
+                    <p id="temperaturaValue" class="card-text"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br>
+
+
+            <div class="row">
+              <div class="col-12 ">
+                <h5>Seguridad</h5>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm col-md col-lg">
+                <div class="card mt-3">
+                  <img class="card-img-top" src="dist.jpeg" alt="Card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title">Distancia</h5>
+                    <p id="distanciaValue" class="card-text"></p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm col-md col-lg">
+                <div id="movimientoCard" class="card mt-3">
+                  <img class="card-img-top" src="movi.jpeg" alt="Card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title">Movimiento</h5>
+                    <p id="movimientoValue" class="card-text"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br>
+
+            <div class="row">
+              <div class="text-center col-12">
+                <input type="button" class="btn btn-danger btnSeccion" id="logOut" value="Cerrar sesión"/>
+              </div>
+              </div>
+            </div>
+            CONTROL PANEL CONTAINER-->
+
+            <!-- CDN Firebase JS-->
+            <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
+
+            <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+            <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+            <!-- Scripts para slider bar-->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.2.0/bootstrap-slider.js" integrity="sha256-0w/fZPAdu72g2CGIv9Ha8Lp9qXAjls4R2QmMJ5B2Qb4=" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.2.0/bootstrap-slider.min.js" integrity="sha256-tDcb6zRMjjdonaeNQujdwW5FQdABco7S2Z60J4cbH9s=" crossorigin="anonymous"></script>
+
+            <!-- Nuestro JS -->
+            <script src="app.js"></script>
+</body>
+</html>
